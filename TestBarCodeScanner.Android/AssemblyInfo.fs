@@ -1,4 +1,4 @@
-﻿namespace SmallInvApp.Android
+﻿namespace TestBarCodeScanner.Android
 
 open System.Reflection
 open System.Runtime.CompilerServices
@@ -7,16 +7,16 @@ open Android.App
 
 // the name of the type here needs to match the name inside the ResourceDesigner attribute
 type Resources = SmallInvApp.Android.Resource
-[<assembly: Android.Runtime.ResourceDesigner("SmallInvApp.Android.Resources", IsApplication=true)>]
+[<assembly: Android.Runtime.ResourceDesigner("TestBarCodeScanner.Android.Resources", IsApplication=true)>]
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[<assembly: AssemblyTitle("SmallInvApp.Android")>]
+[<assembly: AssemblyTitle("TestBarCodeScanner.Android")>]
 [<assembly: AssemblyDescription("")>]
 [<assembly: AssemblyConfiguration("")>]
 [<assembly: AssemblyCompany("")>]
-[<assembly: AssemblyProduct("SmallInvApp.Android")>]
+[<assembly: AssemblyProduct("TestBarCodeScanner.Android")>]
 [<assembly: AssemblyCopyright("Copyright ©  2014")>]
 [<assembly: AssemblyTrademark("")>]
 [<assembly: AssemblyCulture("")>]

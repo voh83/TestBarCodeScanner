@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -7,10 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="MobileBarodeScanner.fs" />
-    <Compile Include="BarcodeSettings.fs" />
-    <Compile Include="test.fsx" />
-    <Compile Include="SmallInvApp.fs" />
+    <Compile Include="TestApp.fs" />
   </ItemGroup>
   
   <ItemGroup>

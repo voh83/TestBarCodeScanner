@@ -1,12 +1,10 @@
 ﻿// Copyright Fabulous contributors. See LICENSE.md for license.
-namespace SmallInvApp
+namespace TestBarCodeScanner
 
 
 open Fabulous
 open Fabulous.XamarinForms
-open MobileBarodeScanner   
 open Xamarin.Forms
-open ZXing.Mobile
 open ZXing.Net.Mobile.Forms
 
 
@@ -17,12 +15,6 @@ module App =
         ScannedText:string}
 
     type Msg = 
-       (* | Increment 
-        | Decrement 
-        | Reset
-        | SetStep of int
-        | TimerToggled of bool
-        | TimedTick *)
         | ScannResult
         | SampleText of string
 
@@ -33,61 +25,24 @@ module App =
 
     let update msg model =
         match msg with
-        | ScannResult -> {model with ScannedText = escanear().Text}, Cmd.none
-        | SampleText smplText -> {model with ScannedText = (sprintf "Texto de Prueba: %s" smplText)}, Cmd.none
-      (*  | Increment -> { model with Count = model.Count + model.Step }, Cmd.none
-        | Decrement -> { model with Count = model.Count - model.Step }, Cmd.none
-        | ScannResult res -> {model with ScannedText = (sprintf "Code: %s" res.Text)}, Cmd.none
-        | Reset -> init ()
-        | SetStep n -> { model with Step = n }, Cmd.none
-        | TimerToggled on -> { model with TimerOn = on }, (if on then timerCmd else Cmd.none)
-        | TimedTick -> 
-            if model.TimerOn then 
-                { model with Count = model.Count + model.Step }, timerCmd
-            else 
-                model, Cmd.none*)
-    
-   // let scanRsDel = ZXingScannerView.ScanResultDelegate(
-     //   fun res -> {model with ScannedText = res.Text} |> ignore
-    // *)
-
-  
-    //let timerTicker dispatch = 
-     //   let timer = new System.Timers.Timer(5000.0)
-     //   timer.Elapsed.Subscribe(fun _ -> dispatch (SampleText (System.DateTime.Now.Ticks.ToString()))) |> ignore
-     //   timer.Enabled <- true
-     //   timer.Start()
-       
+        | SampleText smplText -> {model with ScannedText = (sprintf "Scan: %s" smplText)}, Cmd.none //Muestra texto 
+ 
+    //Create a BarCode view using the Default configuration
     let barCodeScan disp = 
         let bcs = new ZXingScannerView()
         bcs.IsScanning <- true
         bcs.add_OnScanResult(
-            ZXingScannerView.ScanResultDelegate(
-                fun result -> printfn "%s" result.Text
-                              disp (SampleText (result.Text))
+            ZXingScannerView.ScanResultDelegate( // Triggered when the scanning events happend 
+                fun result -> printfn "%s" result.Text // print the scanned result text in the console log (can be reviewed with android device monitor DDMS
+                              disp (SampleText (result.Text)) // Dispatch the Sample Text 
             ))
         bcs
-   
-
 
     let view (model: Model) dispatch =
             //View.External(result)
            View.ContentPage(
               content = View.StackLayout(
                 children = [ 
-                    
-                    (*View.Label(text = sprintf "%d" model.Count, horizontalOptions = LayoutOptions.Center, width=200.0, horizontalTextAlignment=TextAlignment.Center)
-                    View.Button(text = "Increment", command = (fun () -> dispatch Increment), horizontalOptions = LayoutOptions.Center)
-                    View.Button(text = "Decrement", command = (fun () -> dispatch Decrement), horizontalOptions = LayoutOptions.Center)
-                    
-                    View.Label(text = sprintf "Escaneo: %s" model.ScannedText, horizontalOptions = LayoutOptions.Center)
-                    View.Label(text = "Timer", horizontalOptions = LayoutOptions.Center)
-                    View.Switch(isToggled = model.TimerOn, toggled = (fun on -> dispatch (TimerToggled on.Value)), horizontalOptions = LayoutOptions.Center)
-                    View.Slider(minimumMaximum = (0.0, 10.0), value = double model.Step, valueChanged = (fun args -> dispatch (SetStep (int (args.NewValue + 0.5)))), horizontalOptions = LayoutOptions.FillAndExpand)
-                    View.Label(text = sprintf "Step size: %d" model.Step, horizontalOptions = LayoutOptions.Center) 
-                    View.Button(text = "Reset", horizontalOptions = LayoutOptions.Center, command = (fun () -> dispatch Reset), commandCanExecute = (model <> initModel))
-                    *)
-                    //View.Button(text = "BarCode Scanner", command = (fun () -> dispatch Increment ) , horizontalOptions = LayoutOptions.Center)
                     View.Frame(backgroundColor=Color.FromHex("#2196f3"), padding=Thickness.op_Implicit(24.0), cornerRadius=0.0, 
                         content = View.Label( 
                             text="Bar Code Example", 
@@ -98,7 +53,6 @@ module App =
                     )
                     View.Label(text=model.ScannedText, horizontalOptions = LayoutOptions.Center)
                     View.External(barCodeScan dispatch)
-                    //View.Button(text = "Escanear", horizontalOptions = LayoutOptions.Center, command = (fun () -> dispatch ScannResult))
                     
 
                 ]
@@ -108,8 +62,6 @@ module App =
     // Note, this declaration is needed if you enable LiveUpdate
     let program =
         XamarinFormsProgram.mkProgram init update view
-        //|> Program.withSubscription (fun _ -> Cmd.ofSub barCodeScan)
-        //|> Program.withSubscription (fun _ -> Cmd.ofSub timerTicker )
         
 #if DEBUG
         |> Program.withConsoleTrace

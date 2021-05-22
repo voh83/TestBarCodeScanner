@@ -18,6 +18,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Name>TestBarCodeScanner.iOS</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -166,9 +167,12 @@
     <Reference Include="System.Buffers">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
-    <ProjectReference Include="..\SmallInvApp\SmallInvApp.fsproj">
-      <Project>{ECCE5D82-BEF2-4582-9FC1-215397719966}</Project>
-      <Name>SmallInvApp</Name>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SmallInvApp\TestBarCodeScanner.fsproj">
+      <Name>TestBarCodeScanner</Name>
+      <Project>{ecce5d82-bef2-4582-9fc1-215397719966}</Project>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
