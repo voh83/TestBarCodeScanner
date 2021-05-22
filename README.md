@@ -1,11 +1,13 @@
-README
+# README
 
-A simple test app using Zing Bar Code Scanner using F#
+A simple test app using ZXing Bar Code Scanner Library using F# Fabulous
 
-#How to Try
-Install the apk in your mobile device or install in your PC and test it using your Android Device connected (This does not work with the Androd Emulator)
+## How to install
 
-#How to install
-Simple clone the repository an run it in your android device.
+Simple clone the repository.
+
+## How to Try
+
+Once Installed in your PC and test it using your Android Device connected (This does not work with the Androd Emulator)
 
 Happy Coding!!
