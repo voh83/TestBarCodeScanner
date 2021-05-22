@@ -8,6 +8,6 @@ Simple clone the repository.
 
 ## How to Try
 
-Once Installed in your PC and test it using your Android Device connected (This does not work with the Androd Emulator)
+Once Installed in your PC, test it using your Android Device connected (This does not work with the Androd Emulator)
 
 Happy Coding!!
